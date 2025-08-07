@@ -1,0 +1,89 @@
+1. Find if a duplicate exists in a list of numbers.
+    For eg:
+    const data = [1, 3, 5, 2, 4, 5];
+    Answer:  [5]
+
+2. Check if any item from user roles exists in required roles.
+
+    For eg: 
+    Find if user and editor roles are present in requiredRoles.(roles can be any of length)
+
+    const roles = ['admin', ’manager’,  supervisor‘’,  'editor', ‘viewer’, ‘owner’, ‘’]
+    const userRoles = ['user', 'editor']
+    const requiredRoles = ['admin',  'editor']
+
+    Answer: true
+
+3. Find Common Elements Between Two Arrays
+
+    For eg:
+    const a1 =  [1,4,2,8,9]
+    const a2 = [7,5,0,4,1]
+    Answer: [1, 4]
+
+
+4. Filter items based on allowed keys
+    For eg:
+    const data = [
+        { key: 'name', value: ‘John’},
+        { key: 'email', value:’john@example.com' },
+        { key: 'age', value: 20 },
+    ]
+    const allowedKeys = ['name', 'age']
+    Answer: [ { key: 'name', value: 'John' }, { key: 'age', value: 20 } ]
+
+5. Determine whether both keys and values  of two objects are equal 
+    For eg:
+    const d1= {name:’John’, email:’john@example.com' ,  age: 20 }
+    const d2= {name:’John’, email:’john@example.com' ,  age: 20 }
+    const d3= {name:’Jane’, email:’jane@example.com' ,  age: 20 }
+
+    Answer: sameObject(d1,d2) => true
+    Answer: sameObject(d1,d3) => false
+
+
+6. Group the related data by category 
+    const products = [
+        { id: 1, name: 'Phone', categoryId: 2 },
+        { id: 2, name: 'Shirt', categoryId: 1 },
+        { id: 3, name: 'Charger', categoryId: 2 }
+    ]
+    Answer: 
+    {
+        '1': [ { id: 2, name: 'Shirt', categoryId: 1 } ],
+        '2': [
+            { id: 1, name: 'Phone', categoryId: 2 },
+            { id: 3, name: 'Charger', categoryId: 2 }
+        ]
+    }   
+
+
+
+7. Implement binary search algorithm. (If sorting is required, you should use one of the sorting algorithms: Selection, Insertion, Merge, Quick, Heap Sort)
+
+
+8. Implement singly linked list. Operations on the linked list should be:
+    Append: Add data at the end
+    Prepend: Add data at  the beginning
+    RemoveAt: Removes data from the given index
+    InsertAt: Add data at the given index
+    Size: returns the size of list
+    isEmpty: Checks if list is empty or not
+    Search: Finds data from linked list.
+
+
+
+9. Function to detect whether the dependency structure contains any cycles, where an item indirectly or directly depends on itself.(optional)
+
+    const deps = {
+        A: { id: 1, dependsOn: [ { id: 2 } ] },
+        B: { id: 2, dependsOn: [ { id: 3 } ] },
+        C: { id: 3, dependsOn: [ { id: 1 } ] }
+    }
+    Answer: true
+
+    If there’s cycle, Find the Cycle Path 
+    Answer:  [‘A’, ‘B’ , ‘C ‘, ‘ A’]
+
+
+10. Explain the concept of a Binary Search Tree and provide its implementation in JavaScript.
