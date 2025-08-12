@@ -11,5 +11,6 @@ Create new objects by copying an existing object (prototype).
 ## Usage
 ```typescript
 const copy = original.clone();
-
+```
+## Output
 ![alt text](image.png)

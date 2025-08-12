@@ -14,5 +14,6 @@ const user = new UserBuilder('name', 'email')
   .setAge(25)
   .setAddress('address')
   .build();
-
-  ![alt text](image.png)
+```
+## Output
+![alt text](image.png)

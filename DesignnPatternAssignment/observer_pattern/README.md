@@ -12,6 +12,6 @@ Define a subscription mechanism to notify multiple objects about events.
 ```typescript
 agency.addChannel(channel);
 agency.publishNews('news');
-
-
+```
+## Output
 ![alt text](image.png)

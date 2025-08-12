@@ -12,6 +12,6 @@ Allows incompatible interfaces to work together.
 ```typescript
 const adapter = new OldPrinterAdapter(new OldPrinter());
 adapter.print('message');
-
-
+```
+## Output
 ![alt text](image.png)

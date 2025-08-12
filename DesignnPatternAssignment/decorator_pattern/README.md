@@ -12,5 +12,6 @@ Add responsibilities to objects dynamically.
 ```typescript
 let coffee = new SimpleCoffee();
 coffee = new MilkDecorator(coffee);
-
+```
+## Output
 ![alt text](image.png)

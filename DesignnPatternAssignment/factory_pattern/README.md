@@ -12,5 +12,6 @@ Creates objects without exposing the instantiation logic to the client.
 ```typescript
 const transport = LogisticsFactory.createTransport('sea');
 transport.deliver();
-
+```
+## Output
 ![alt text](image.png)
