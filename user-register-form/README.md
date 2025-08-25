@@ -20,8 +20,9 @@ A React-based user registration form with comprehensive validation using React H
 ## Validation Rules
   - All fields except Message are required
   - No field can contain only whitespace
+  - Firstname and lastname must start with CAPITAL letter and can have alphabets only
   - Email must be in valid format (e.g., user@example.com)
-  - Contact number must match pattern (+1234567890 or 1234567890)
+  - Contact number must start with 9 and max 10 digits
   - At least one skill must be provided
   - Skills cannot be empty or whitespace-only
 
