@@ -1,69 +1,90 @@
-# React + TypeScript + Vite
+# React CRUD App with Authentication
+A complete React application with user authentication and full CRUD (Create, Read, Update, Delete) operations for product management.
+## Features
+### Authentication
+  - Login system with hardcoded credentials (admin/admin123)
+  - Protected routes that require authentication
+  - Session management with React Context
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Product Management (CRUD)
+  - Create: Add new products with form validation
+  - Read: View product list with search and pagination
+  - Update: Edit existing product information
+  - Delete: Remove products with confirmation
 
-Currently, two official plugins are available:
+### UI/UX Features
+  - Modern, responsive design with ShadCN components
+  - Real-time search and filtering
+  - Pagination for better data management
+  - Loading states and skeleton screens
+  - Error handling with user-friendly messages
+  - Form validation with Zod schema validation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+  - Frontend: React 18 + TypeScript
+  - UI Components: ShadCN UI
+  - State Management: TanStack Query (React Query)
+  - Routing: React Router v6
+  - Form Handling: React Hook Form + Zod validation
+  - HTTP Client: Native Fetch API
+  - Styling: Tailwind CSS
+  - Build Tool: Vite
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation
+- Clone Repository
 ```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+git clone https://github.com/pujan-22/GritFeat-Launchpad/tree/main/react-crud-app
+cd react-crud-app
 ```
+Install dependencies
+```
+npm install
+```
+Start the development server
+```
+npm run dev
+```
+Open your browser Navigate to http://localhost:5173
+
+ Login Credentials
+
+    Username: admin
+    Password: admin123
+
+## Usage
+1. Login
+    - Access the login page at /login
+    - Enter the credentials mentioned above
+    - Successful login redirects to the dashboard
+
+2. Dashboard Features
+    - View Products: See all products in a paginated table
+    - Search: Use the search bar to filter products by title or category
+    - Add Product: Click "Add Product" button to create new products
+    - Edit Product: Click the edit icon on any product row
+    - Delete Product: Click the delete icon (trash can) on any product row
+
+3. Product Form
+    - Title: Product name (required)
+    - Price: Product price (required, must be > 0)
+    - Description: Product description (required)
+    - Category: Product category (required
+    - Image URL: Product image URL (required, must be valid URL)
+
+## API Integration
+This app uses the Fake Store API for product data:
+  - GET /products - Fetch all products
+  - GET /products/:id - Fetch single product
+  - POST /products - Create new product
+  - PUT /products/:id - Update product
+  - DELETE /products/:id - Delete product
+
+
+## Screenshots
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
