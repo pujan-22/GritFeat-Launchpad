@@ -1,4 +1,4 @@
-# Todo List
+# Todo List Storage System
 A lightweight command-line todo list manager built with Node.js and TypeScript that persists data to JSON files.
 ## Features
     - Add, list, update, toggle, and remove tasks
