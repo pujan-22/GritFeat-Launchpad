@@ -34,10 +34,10 @@ A comprehensive Node.js, Express, and MongoDB RESTful API for an e-commerce plat
 - MongoDB (local installation or MongoDB Atlas account)
 - npm or yarn
 
-###Installation
+### Installation
 1. Clone the repository:
 ```bash
-git clone <epo-url>
+git clone https://github.com/pujan-22/GritFeat-Launchpad/
 cd node-with-mongoose
 ```
 2. Install dependencies:
@@ -77,7 +77,7 @@ npm run seed
 
 **User Filters:** `country`, `minFollowers`, `interest`, `profileTheme`, `subscriptionTier`, `page`, `limit`
 ### Product Endpoints
-! Method | Endpoint	| Description |
+| Method | Endpoint	| Description |
 | ------ | -------- | ----------- |
 | POST | `/products` | Create a new product |
 | GET | `/products` | Get all products (with optional filters) |
