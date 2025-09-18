@@ -2,30 +2,33 @@ import BlogRepository from "./repository";
 import { IBlogPayload, IBlogUpdatePayload } from "./types";
 
 const BlogService = {
-  getAll() {
-    return BlogRepository.getAll();
+  async getAll() {
+    return await BlogRepository.findAllBlogs();
   },
 
-  getById(id: number) {
-    const blog = BlogRepository.getById(id);
+  async getById(id: string) {
+    const blog = await BlogRepository.findBlogById(id);
     if (!blog) throw new Error("Blog not found");
     return blog;
   },
 
-  create(payload: IBlogPayload) {
+  async create(payload: IBlogPayload & { 
+    author: any; 
+    createdBy: any; 
+    updatedBy: any; 
+  }) {
     if (!payload.title?.trim()) throw new Error("Title is required");
     if (!payload.content?.trim()) throw new Error("Content is required");
-    if (!payload.author?.trim()) throw new Error("Author is required");
+    if (!payload.author) throw new Error("Author is required");
     
     if (payload.title.length < 3) throw new Error("Title must be at least 3 characters");
     if (payload.content.length < 10) throw new Error("Content must be at least 10 characters");
-    if (payload.author.length < 2) throw new Error("Author must be at least 2 characters");
 
-    return BlogRepository.create(payload);
+    return await BlogRepository.createBlog(payload);
   },
 
-  updateById(id: number, payload: IBlogUpdatePayload) {
-    const existingBlog = BlogRepository.getById(id);
+  async updateById(id: string, payload: IBlogUpdatePayload, updatedBy: any) {
+    const existingBlog = await BlogRepository.findBlogById(id);
     if (!existingBlog) throw new Error("Blog not found");
 
     if (payload.title !== undefined) {
@@ -38,16 +41,11 @@ const BlogService = {
       if (payload.content.length < 10) throw new Error("Content must be at least 10 characters");
     }
 
-    if (payload.author !== undefined) {
-      if (!payload.author.trim()) throw new Error("Author cannot be empty");
-      if (payload.author.length < 2) throw new Error("Author must be at least 2 characters");
-    }
-
-    return BlogRepository.updateById(id, payload);
+    return await BlogRepository.updateBlogById(id, payload, updatedBy);
   },
 
-  deleteById(id: number) {
-    const deleted = BlogRepository.deleteById(id);
+  async deleteById(id: string) {
+    const deleted = await BlogRepository.deleteBlogById(id);
     if (!deleted) throw new Error("Blog not found");
     return true;
   }

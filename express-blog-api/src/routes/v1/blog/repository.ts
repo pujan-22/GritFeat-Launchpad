@@ -1,53 +1,72 @@
-import { IBlog, IBlogPayload, IBlogUpdatePayload } from "./types";
+import Blog, { IBlog } from "../../../models/Blog";
+import { Types } from "mongoose";
 
-let BLOGS: IBlog[] = [];
-let nextId = 1;
-
-const BlogRepository = {
-  getNextId(): number {
-    return nextId++;
-  },
-
-  create(payload: IBlogPayload): IBlog {
-    const blog: IBlog = {
-      id: this.getNextId(),
-      title: payload.title,
-      content: payload.content,
-      author: payload.author,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
-    BLOGS.push(blog);
-    return blog;
-  },
-
-  getAll(): IBlog[] {
-    return BLOGS;
-  },
-
-  getById(id: number): IBlog | undefined {
-    return BLOGS.find(blog => blog.id === id);
-  },
-
-  updateById(id: number, payload: IBlogUpdatePayload): IBlog | undefined {
-    const blogIndex = BLOGS.findIndex(blog => blog.id === id);
-    if (blogIndex === -1) return undefined;
-
-    const updatedBlog: IBlog = {
-      ...BLOGS[blogIndex],
-      ...payload,
-      updatedAt: new Date()
-    };
-
-    BLOGS[blogIndex] = updatedBlog;
-    return updatedBlog;
-  },
-
-  deleteById(id: number): boolean {
-    const initialLength = BLOGS.length;
-    BLOGS = BLOGS.filter(blog => blog.id !== id);
-    return BLOGS.length < initialLength;
-  }
+export const createBlog = async (blogData: {
+  title: string;
+  content: string;
+  author: Types.ObjectId;
+  createdBy: Types.ObjectId;
+  updatedBy: Types.ObjectId;
+}): Promise<IBlog> => {
+  const blog = await Blog.create(blogData);
+  return blog;
 };
 
-export default BlogRepository;
+export const findBlogById = async (id: string): Promise<IBlog | null> => {
+  return await Blog.findById(id)
+    .populate("author", "firstName lastName email")
+    .populate("createdBy", "firstName lastName")
+    .populate("updatedBy", "firstName lastName");
+};
+
+export const findAllBlogs = async (): Promise<IBlog[]> => {
+  return await Blog.find()
+    .populate("author", "firstName lastName email")
+    .populate("createdBy", "firstName lastName")
+    .populate("updatedBy", "firstName lastName")
+    .sort({ createdAt: -1 });
+};
+
+export const findBlogsByAuthor = async (authorId: string): Promise<IBlog[]> => {
+  return await Blog.find({ author: new Types.ObjectId(authorId) })
+    .populate("author", "firstName lastName email")
+    .populate("createdBy", "firstName lastName")
+    .populate("updatedBy", "firstName lastName")
+    .sort({ createdAt: -1 });
+};
+
+export const updateBlogById = async (
+  id: string, 
+  updateData: Partial<{ title: string; content: string }>, 
+  updatedBy: Types.ObjectId
+): Promise<IBlog | null> => {
+  return await Blog.findByIdAndUpdate(
+    id,
+    { ...updateData, updatedBy },
+    { new: true, runValidators: true }
+  )
+  .populate("author", "firstName lastName email")
+  .populate("createdBy", "firstName lastName")
+  .populate("updatedBy", "firstName lastName");
+};
+
+export const deleteBlogById = async (id: string): Promise<IBlog | null> => {
+  return await Blog.findByIdAndDelete(id);
+};
+
+export const findBlogByIdAndAuthor = async (id: string, authorId: string): Promise<IBlog | null> => {
+  return await Blog.findOne({ _id: new Types.ObjectId(id), author: new Types.ObjectId(authorId) })
+    .populate("author", "firstName lastName email")
+    .populate("createdBy", "firstName lastName")
+    .populate("updatedBy", "firstName lastName");
+};
+
+export default {
+  createBlog,
+  findBlogById,
+  findAllBlogs,
+  findBlogsByAuthor,
+  updateBlogById,
+  deleteBlogById,
+  findBlogByIdAndAuthor
+};
